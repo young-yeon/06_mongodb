@@ -1,0 +1,39 @@
+1. 관계형 데이터베이스 (RDB) : MSSQL, MySQL, MariaDB, Oracle, SQLite, PostgreSQL
+    - 관계형 모델을 기반으로 함
+    - 테이블 스키마가 고정
+    - SQL을 통해 CRUD 처리
+
+2. NoSQL (non SQL, not only SQL) : MongoDB
+    - 빠른 저장, 빠른 검색 => 빅데이터
+    - 스키마 유동적
+    - 확장성
+
+3. MongoDB & Compass 설치
+    1) Server 실행 : mongod --dbpath=data
+    2) Client 실행 : mongo
+
+4. mongodb shell 명령어
+    1) database
+        - db
+        - use "DB명"
+        - show dbs
+        - db.dropDatabase()
+
+    2) Collection
+        - db.createCollection(foo)
+        - show collections
+        - db.foo.drop()
+
+    3) Document
+        - 추가 : db.foo.insert({..})
+        - 조회 : db.foo.find()
+            - db.foo.find().pretty()
+            - db.foo.find({}, {_id: 0(=false), key1: 1(=true), ..})
+            - db.foo.find().limit(num)
+            - db.foo.find({key1: value1, ..}).pretty()
+        - 수정
+            - db.foo.update({key1: value1, ..}, {key1: value1, ..})
+            - db.foo.update({key1: value1, ..}, {$set: {key1: value1,..}})
+        - 삭제
+            - db.foo.remove({})
+            - db.foo.remove({key1: value1, ..})

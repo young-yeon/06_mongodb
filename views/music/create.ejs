@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("../header"); -%>
+  <!-- 불러오기 -->
+  <body>
+    <%- include("../menu"); -%>
+
+    <form id="createForm">
+      <div class="md-form">
+        <input type="text" id="singer" class="form-control" required />
+        <label for="singer">Singer</label>
+      </div>
+      <div class="md-form">
+        <input type="text" id="title" class="form-control" required />
+        <label for="title">Title</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+
+    <%- include("../footer.ejs"); -%>
+    <script>
+      $(function () {
+        $("#createForm").submit((event) => {
+          event.preventDefault();
+          const singer = $("#singer").val();
+          const title = $("#title").val();
+
+          console.log(singer, title);
+
+          $.ajax({
+            url: "/api/music",
+            type: "POST",
+            data: { singer, title },
+          })
+            .done(() => {
+              location.href = "/api/music";
+            })
+            .fail((request, status, error) => {
+              alert(request.responseText);
+            });
+        });
+      });
+    </script>
+  </body>
+</html>
