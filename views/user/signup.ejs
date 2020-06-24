@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("../header"); -%>
+  <!-- 불러오기 -->
+  <body>
+    <%- include("../menu"); -%>
+    <!-- Material form register -->
+    <div class="card">
+      <h5 class="card-header info-color white-text text-center py-4">
+        <strong>Sign up</strong>
+      </h5>
+
+      <!--Card content-->
+      <div class="card-body px-lg-5 pt-0">
+        <!-- Form -->
+        <form
+          id="signupForm"
+          class="text-center"
+          style="color: #757575;"
+          action="#!"
+        >
+          <div class="form-row">
+            <div class="col">
+              <!-- First name -->
+              <div class="md-form">
+                <input type="text" id="name" class="form-control" required />
+                <label for="name">Input name</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- E-mail -->
+          <div class="md-form mt-0">
+            <input type="email" id="email" class="form-control" required />
+            <label for="email">E-mail</label>
+          </div>
+
+          <!-- Password -->
+          <div class="md-form">
+            <input
+              type="password"
+              id="password"
+              class="form-control"
+              required
+            />
+            <label for="password">Password</label>
+          </div>
+
+          <!-- Sign up button -->
+          <button
+            class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0"
+            type="submit"
+          >
+            Sign up
+          </button>
+        </form>
+
+        <!-- Form -->
+      </div>
+    </div>
+    <!-- Material form register -->
+    <%- include("../footer.ejs"); -%>
+    <script>
+      $(function () {
+        $("#createForm").submit((event) => {
+          event.preventDefault();
+          const singer = $("#singer").val();
+          const title = $("#title").val();
+
+          console.log(singer, title);
+
+          $.ajax({
+            url: "/api/music",
+            type: "POST",
+            data: { singer, title },
+          })
+            .done(() => {
+              location.href = "/api/music";
+            })
+            .fail((request, status, error) => {
+              alert(request.responseText);
+            });
+        });
+      });
+    </script>
+  </body>
+</html>
